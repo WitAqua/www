@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Download, Github, Search, AlertTriangle } from 'lucide-react';
+import { Download, Github, Search, AlertTriangle } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import {
@@ -29,12 +29,16 @@ export default function DevicesPage() {
   useEffect(() => {
     const fetchDevicesData = async () => {
       try {
-        const response = await fetch('https://raw.githubusercontent.com/WitAqua/WitAquaOTA/refs/heads/main/data/devices.json');
+        const response = await fetch(
+          "https://raw.githubusercontent.com/WitAqua/WitAquaOTA/refs/heads/main/data/devices.json",
+        );
         if (!response.ok) {
-          throw new Error(`Failed to fetch devices data. Status: ${response.status}`);
+          throw new Error(
+            `Failed to fetch devices data. Status: ${response.status}`,
+          );
         }
         const data = await response.json();
-        setDevices(data.devices);  // Assuming the JSON contains an array of devices under 'devices'
+        setDevices(data.devices); // Assuming the JSON contains an array of devices under 'devices'
       } catch (e) {
         console.error("Error loading devices:", e);
         setError("Failed to load devices data");
@@ -46,10 +50,11 @@ export default function DevicesPage() {
     fetchDevicesData();
   }, []);
 
-  const filteredDevices = devices.filter(device =>
-    device.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    device.codename.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    device.brand.toLowerCase().includes(searchQuery.toLowerCase())
+  const filteredDevices = devices.filter(
+    (device) =>
+      device.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      device.codename.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      device.brand.toLowerCase().includes(searchQuery.toLowerCase()),
   );
 
   const { deprecatedDevices, activeDevices } = filteredDevices.reduce(
@@ -64,7 +69,10 @@ export default function DevicesPage() {
       }
       return acc;
     },
-    { deprecatedDevices: [], activeDevices: {} } as { deprecatedDevices: Device[], activeDevices: Record<string, Device[]> }
+    { deprecatedDevices: [], activeDevices: {} } as {
+      deprecatedDevices: Device[];
+      activeDevices: Record<string, Device[]>;
+    },
   );
 
   return (
@@ -126,20 +134,26 @@ function DeviceItem({ device }: { device: Device }) {
 
   const handleFetchChangelog = async () => {
     try {
-      const response = await fetch(`https://raw.githubusercontent.com/WitAqua/WitAquaOTA/refs/heads/main/changelog/${device.codename}`);
+      const response = await fetch(
+        `https://raw.githubusercontent.com/WitAqua/WitAquaOTA/refs/heads/main/changelog/${device.codename}`,
+      );
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const text = await response.text();
       setChangelog(text);
     } catch (error) {
-      console.error('Error fetching changelog:', error);
-      setChangelog(`Failed to load changelog for ${device.name} (${device.codename}). Please try again later.`);
+      console.error("Error fetching changelog:", error);
+      setChangelog(
+        `Failed to load changelog for ${device.name} (${device.codename}). Please try again later.`,
+      );
     }
   };
 
   return (
-    <div className={`flex flex-col sm:flex-row justify-between w-full p-4 rounded-lg ${device.deprecated ? 'bg-yellow-100 dark:bg-yellow-900' : 'hover:bg-muted'}`}>
+    <div
+      className={`flex flex-col sm:flex-row justify-between w-full p-4 rounded-lg ${device.deprecated ? "bg-yellow-100 dark:bg-yellow-900" : "hover:bg-muted"}`}
+    >
       <div className="flex flex-col">
         <div className="flex items-center">
           <span className="font-medium">{device.name}</span>
@@ -147,11 +161,10 @@ function DeviceItem({ device }: { device: Device }) {
             <AlertTriangle className="ml-2 h-4 w-4 text-yellow-600 dark:text-yellow-400" />
           )}
         </div>
+        <span className="text-sm text-muted-foreground">{device.codename}</span>
         <span className="text-sm text-muted-foreground">
-          {device.codename}
-        </span>
-        <span className="text-sm text-muted-foreground">
-          Android {device.latestAndroidVersion} | Latest build: {device.latestBuildDate}
+          Android {device.latestAndroidVersion} | Latest build:{" "}
+          {device.latestBuildDate}
         </span>
         <div className="flex items-center mt-1">
           <span className="text-sm text-muted-foreground mr-2">
@@ -169,14 +182,10 @@ function DeviceItem({ device }: { device: Device }) {
           )}
         </div>
       </div>
-      <div className="flex items-center gap-2 mt-2 sm:mt-0">
+      <div className="flex items-center gap-2 mt-2 sm:mt-0 overflow-x-auto">
         <Dialog>
           <DialogTrigger asChild>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={handleFetchChangelog}
-            >
+            <Button variant="outline" size="sm" onClick={handleFetchChangelog}>
               Changelog
             </Button>
           </DialogTrigger>
