@@ -1,6 +1,3 @@
-import Link from "next/link";
-import { FaXTwitter } from "react-icons/fa6";
-
 export function SiteFooter() {
   return (
     <footer className="border-t bg-background">
@@ -18,13 +15,6 @@ export function SiteFooter() {
             </a>
             .
           </p>
-        </div>
-
-        <div className="flex items-center space-x-4">
-          <Link href="https://x.com/WitAquaROM" target="_blank" rel="noopener noreferrer">
-            <FaXTwitter className="h-5 w-5" />
-            <span className="sr-only">X</span>
-          </Link>
         </div>
       </div>
     </footer>
