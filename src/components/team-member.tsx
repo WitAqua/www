@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { LuGithub } from "react-icons/lu";
+import { LuGithub, LuGlobe } from "react-icons/lu";
 import { FaXTwitter } from "react-icons/fa6";
 import { FaTelegramPlane } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
@@ -11,6 +11,7 @@ interface TeamMemberProps {
   github: string;
   twitter?: string;
   telegram?: string;
+  www?: string;
 }
 
 export function TeamMember({
@@ -20,6 +21,7 @@ export function TeamMember({
   github,
   twitter,
   telegram,
+  www,
 }: TeamMemberProps) {
   return (
     <div className="flex flex-col items-center text-center px-4 py-6 sm:px-6 lg:px-8 mx-auto w-full max-w-xs">
@@ -64,6 +66,18 @@ export function TeamMember({
             >
               <FaTelegramPlane className="h-4 w-4" />
               <span className="sr-only">Telegram profile</span>
+            </a>
+          </Button>
+        )}
+        {www && (
+          <Button variant="outline" size="icon" asChild>
+            <a
+              href={`https://${www}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <LuGlobe className="h-4 w-4" />
+              <span className="sr-only">Website</span>
             </a>
           </Button>
         )}

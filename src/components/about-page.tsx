@@ -25,6 +25,7 @@ const teamMembers = [
     github: "soralis0912",
     twitter: "soralis_0912",
     telegram: "soralis_0912",
+    www: "soralis.org",
   },
   {
     name: "neroices",
@@ -32,6 +33,7 @@ const teamMembers = [
     image: "/neroices.png",
     github: "neroices",
     twitter: "letsmakeices",
+    www: "slce.moe",
   },
   {
     name: "MONE-FIERA",
