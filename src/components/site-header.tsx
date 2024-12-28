@@ -22,12 +22,6 @@ export function SiteHeader() {
 
         <nav className="ml-6 flex items-center space-x-4 sm:space-x-6">
           <Link
-            href="/"
-            className="text-sm font-medium transition-colors hover:text-primary"
-          >
-            Home
-          </Link>
-          <Link
             href="/devices"
             className="text-sm font-medium transition-colors hover:text-primary"
           >
