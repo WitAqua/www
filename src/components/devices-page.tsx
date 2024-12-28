@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Download, Github, Search, AlertTriangle } from "lucide-react";
+import { LuDownload, LuGithub, LuSearch } from "react-icons/lu";
+import { TbAlertTriangle } from "react-icons/tb";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import {
@@ -79,7 +80,7 @@ export default function DevicesPage() {
     <div className="container py-6 px-4 sm:px-6 lg:px-8 mx-auto">
       <div className="flex flex-col gap-6">
         <div className="relative flex items-center">
-          <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
+          <LuSearch className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
           <Input
             placeholder="Search devices..."
             className="pl-10 w-full"
@@ -158,7 +159,7 @@ function DeviceItem({ device }: { device: Device }) {
         <div className="flex items-center">
           <span className="font-medium">{device.name}</span>
           {device.deprecated && (
-            <AlertTriangle className="ml-2 h-4 w-4 text-yellow-600 dark:text-yellow-400" />
+            <TbAlertTriangle className="ml-2 h-4 w-4 text-yellow-600 dark:text-yellow-400" />
           )}
         </div>
         <span className="text-sm text-muted-foreground">{device.codename}</span>
@@ -177,7 +178,7 @@ function DeviceItem({ device }: { device: Device }) {
               rel="noopener noreferrer"
               className="text-primary hover:text-primary-focus"
             >
-              <Github className="h-4 w-4" />
+              <LuGithub className="h-4 w-4" />
             </a>
           )}
         </div>
@@ -206,7 +207,7 @@ function DeviceItem({ device }: { device: Device }) {
           size="sm"
           onClick={() => window.open(device.downloadUrl, "_blank")}
         >
-          <Download className="mr-2 h-4 w-4" />
+          <LuDownload className="mr-2 h-4 w-4" />
           Latest
         </Button>
         <Button
@@ -214,7 +215,7 @@ function DeviceItem({ device }: { device: Device }) {
           size="sm"
           onClick={() => window.open(`${device.archiveUrl}`, "_blank")}
         >
-          <Download className="mr-2 h-4 w-4" />
+          <LuDownload className="mr-2 h-4 w-4" />
           Archive
         </Button>
 
@@ -223,7 +224,7 @@ function DeviceItem({ device }: { device: Device }) {
           size="sm"
           onClick={() => window.open(`${device.imgsUrl}`, "_blank")}
         >
-          <Download className="mr-2 h-4 w-4" />
+          <LuDownload className="mr-2 h-4 w-4" />
           Images
         </Button>
 

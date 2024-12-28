@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Github } from "lucide-react";
+import { LuGithub } from "react-icons/lu";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -47,7 +47,7 @@ export function SiteHeader() {
               size="icon"
               className="hidden sm:inline-flex"
             >
-              <Github className="h-5 w-5" />
+              <LuGithub className="h-5 w-5" />
             </Button>
           </Link>
           <ThemeToggle />
