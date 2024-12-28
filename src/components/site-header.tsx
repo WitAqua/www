@@ -3,6 +3,7 @@ import { LuGithub } from "react-icons/lu";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { FaXTwitter } from "react-icons/fa6";
 
 export function SiteHeader() {
   return (
@@ -48,6 +49,15 @@ export function SiteHeader() {
               className="hidden sm:inline-flex"
             >
               <LuGithub className="h-5 w-5" />
+            </Button>
+          </Link>
+          <Link href="https://x.com/WitAquaROM">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="hidden sm:inline-flex"
+            >
+              <FaXTwitter className="h-5 w-5" />
             </Button>
           </Link>
           <ThemeToggle />
