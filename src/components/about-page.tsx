@@ -9,49 +9,50 @@ const teamMembers = [
     role: "Founder/Lead Developer",
     image: "/toufu.png",
     github: "toufune",
-    twitter: "toufu14271"
+    twitter: "toufu14271",
   },
   {
     name: "Maitani-Sakura",
     role: "Co-Founder/Developer",
     image: "/maitani-sakura.png",
     github: "maitani-sakura",
-    twitter: "M_Sakura479"
+    twitter: "M_Sakura479",
   },
   {
     name: "soralis0912",
     role: "Developer",
     image: "/soralis0912.png",
     github: "soralis0912",
-    twitter: "soralis_0912"
+    twitter: "soralis_0912",
+    telegram: "soralis_0912",
   },
   {
     name: "neroices",
     role: "Developer",
     image: "/neroices.png",
     github: "neroices",
-    twitter: "letsmakeices"
+    twitter: "letsmakeices",
   },
   {
     name: "MONE-FIERA",
     role: "Developer",
     image: "/monefiera.png",
     github: "monefiera",
-    twitter: "Forsaken_Love02"
+    twitter: "Forsaken_Love02",
   },
   {
     name: "Yumagi",
     role: "Developer",
     image: "/yumagi.png",
     github: "ymag-h",
-    twitter: "ymag_h"
+    twitter: "ymag_h",
   },
   {
     name: "satokun2668",
     role: "Designer",
     image: "/satokun.jpg",
     github: "numaaqours",
-    twitter: "numa_aqours"
+    twitter: "numa_aqours",
   },
   {
     name: "Garry050",
