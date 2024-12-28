@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { Github } from 'lucide-react'
+import { LuGithub } from 'react-icons/lu'
 import { Button } from '@/components/ui/button'
 
 interface TeamMemberProps {
@@ -24,7 +24,7 @@ export function TeamMember({ name, role, image, github }: TeamMemberProps) {
       <div className="flex space-x-2">
         <Button variant="outline" size="icon" asChild>
           <a href={`https://github.com/${github}`} target="_blank" rel="noopener noreferrer">
-            <Github className="h-4 w-4" />
+            <LuGithub className="h-4 w-4" />
             <span className="sr-only">GitHub profile</span>
           </a>
         </Button>

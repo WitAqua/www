@@ -4,11 +4,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import {
-  ArrowRight,
-  PaintbrushVertical,
-  CircleFadingArrowUp,
-  Smartphone,
-} from "lucide-react";
+  LuArrowRight,
+  LuPaintbrushVertical,
+  LuCircleFadingArrowUp,
+  LuSmartphone,
+} from "react-icons/lu";
 import { Button } from "@/components/ui/button";
 
 const MotionImage = motion.create(Image);
@@ -21,19 +21,19 @@ const fadeIn = {
 
 const features = [
   {
-    icon: PaintbrushVertical,
+    icon: LuPaintbrushVertical,
     title: "Customizable Features",
     description:
       "Add some extra functionality with a few thoughtful, carefully selected features that enhance usability and personalization without compromising system performance.",
   },
   {
-    icon: CircleFadingArrowUp,
+    icon: LuCircleFadingArrowUp,
     title: "Frequent Stable Updates",
     description:
       "These updates are carefully tested and designed to keep your system in a stable state while ensuring you always have the latest security patches and improvements.",
   },
   {
-    icon: Smartphone,
+    icon: LuSmartphone,
     title: "Stock Android Experience",
     description:
       "Enjoy a clean, bloat-free interface that stays true to the pure Android design and functionality.",
@@ -147,7 +147,7 @@ export default function Home() {
                 </p>
                 <Link href="https://github.com/WitAqua">
                   <Button>
-                    Click Here <ArrowRight className="ml-2 h-4 w-4" />
+                    Click Here <LuArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </Link>
               </div>
