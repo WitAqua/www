@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { LuTwitter } from "react-icons/lu";
+import { FaXTwitter } from "react-icons/fa6";
 
 export function SiteFooter() {
   return (
@@ -22,7 +22,7 @@ export function SiteFooter() {
 
         <div className="flex items-center space-x-4">
           <Link href="https://x.com/WitAquaROM" target="_blank" rel="noopener noreferrer">
-            <LuTwitter className="h-5 w-5" />
+            <FaXTwitter className="h-5 w-5" />
             <span className="sr-only">X</span>
           </Link>
         </div>
