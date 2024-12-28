@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import { LuGithub } from 'react-icons/lu'
+import { FaXTwitter } from "react-icons/fa6"
 import { Button } from '@/components/ui/button'
 
 interface TeamMemberProps {
@@ -7,9 +8,10 @@ interface TeamMemberProps {
   role: string
   image: string
   github: string
+  twitter?: string
 }
 
-export function TeamMember({ name, role, image, github }: TeamMemberProps) {
+export function TeamMember({ name, role, image, github, twitter }: TeamMemberProps) {
   return (
     <div className="flex flex-col items-center text-center px-4 py-6 sm:px-6 lg:px-8 mx-auto w-full max-w-xs">
       <Image
@@ -28,6 +30,14 @@ export function TeamMember({ name, role, image, github }: TeamMemberProps) {
             <span className="sr-only">GitHub profile</span>
           </a>
         </Button>
+        {twitter && (
+          <Button variant="outline" size="icon" asChild>
+            <a href={`https://x.com/${twitter}`} target="_blank" rel="noopener noreferrer">
+              <FaXTwitter className="h-4 w-4" />
+              <span className="sr-only">X profile</span>
+            </a>
+          </Button>
+        )}
       </div>
     </div>
   )
