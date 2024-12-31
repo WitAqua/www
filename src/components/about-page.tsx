@@ -17,6 +17,8 @@ const teamMembers = [
     image: "/maitani-sakura.png",
     github: "maitani-sakura",
     twitter: "M_Sakura479",
+    telegram: "M_Sakura479",
+    www: "bento.me/maitani-sakura",
   },
   {
     name: "soralis0912",
