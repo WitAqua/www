@@ -20,7 +20,6 @@ const translations = {
     error: "Error: ",
     errorTryAgain: "Please try again later or contact support.",
     changelog: "Changelog",
-    changelogFor: "Changelog for",
     latest: "Latest",
     archive: "Archive",
     images: "Images",
@@ -37,7 +36,6 @@ const translations = {
     errorTryAgain:
       "後でもう一度お試しいただくか、サポートにお問い合わせください。",
     changelog: "変更履歴",
-    changelogFor: "の変更履歴",
     latest: "最新",
     archive: "アーカイブ",
     images: "イメージ",
@@ -176,9 +174,7 @@ export default function DevicePage({ codename }: DevicePageProps) {
             </DialogTrigger>
             <DialogContent>
               <DialogHeader>
-                <DialogTitle>
-                  {t.changelogFor} {device.name}
-                </DialogTitle>
+                <DialogTitle>{device.name}</DialogTitle>
                 <DialogDescription asChild>
                   <div className="mt-2">
                     <pre className="whitespace-pre-wrap font-mono text-sm">
