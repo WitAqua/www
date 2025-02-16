@@ -29,6 +29,7 @@ const translations = {
     latestBuild: "Latest build:",
     deprecated: "Deprecated",
     deviceNotFound: "Device not found",
+    fileSize: "File Size:",
   },
   ja: {
     loading: "デバイス情報を読み込んでいます...",
@@ -45,6 +46,7 @@ const translations = {
     latestBuild: "最新ビルド：",
     deprecated: "非推奨",
     deviceNotFound: "デバイスが見つかりません",
+    fileSize: "ファイルサイズ:",
   },
 };
 
@@ -139,16 +141,6 @@ export default function DevicePage({ codename }: DevicePageProps) {
             <p className="text-xl text-muted-foreground">{device.codename}</p>
           </div>
         </div>
-        <div className="mb-6">
-          <p className="text-lg">
-            {t.androidVersion}{" "}
-            <span className="font-semibold">{device.latestAndroidVersion}</span>
-          </p>
-          <p className="text-lg">
-            {t.latestBuild}{" "}
-            <span className="font-semibold">{device.latestBuildDate}</span>
-          </p>
-        </div>
         <div className="mb-8">
           <h2 className="text-2xl font-semibold mb-2">{t.maintainer}</h2>
           <p className="text-lg flex items-center">
@@ -160,9 +152,29 @@ export default function DevicePage({ codename }: DevicePageProps) {
                 rel="noopener noreferrer"
                 className="ml-2 text-primary hover:text-primary-focus"
               >
-                <LuGithub className="inline h-6 w-6" />
+                <LuGithub className="inline h-5 w-5 text-cyan-400" />
               </a>
             )}
+          </p>
+        </div>
+        <div className="mb-6">
+          <p className="text-lg font-bold">
+            {t.fileSize}
+            <span className="font-normal">
+              {(device.size / 1024 ** 3).toFixed(2)} GiB
+            </span>
+          </p>
+          <p className="text-lg font-bold">
+            {"MD5:"} <span className="font-mono font-normal">{device.md5}</span>
+          </p>
+          <p className="text-lg font-bold">
+            {t.androidVersion}
+            {" Version: "}
+            <span className="font-normal">{device.latestAndroidVersion}</span>
+          </p>
+          <p className="text-lg font-bold">
+            {t.latestBuild}{" "}
+            <span className="font-normal">{device.latestBuildDate}</span>
           </p>
         </div>
         <div className="flex flex-wrap gap-4">
@@ -185,9 +197,12 @@ export default function DevicePage({ codename }: DevicePageProps) {
               </DialogHeader>
             </DialogContent>
           </Dialog>
-          <Button onClick={() => handleButtonClick(device.downloadUrl)}>
+          <Button
+            onClick={() => handleButtonClick(device.downloadUrl)}
+            className="bg-cyan-400 hover:bg-cyan-600"
+          >
             <LuDownload className="mr-2 h-4 w-4" />
-            {t.latest}
+            {device.filename}
           </Button>
           <Button
             variant="outline"
