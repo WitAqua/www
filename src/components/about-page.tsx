@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { TeamMember } from "@/components/team-member";
+import { TeamMember } from "./team-member";
+import { useLanguage } from "../contexts/LanguageContext";
 
 const teamMembers = [
   {
@@ -72,7 +73,14 @@ const fadeInUp = {
   transition: { duration: 0.5 },
 };
 
-export default function AboutPage() {
+interface AboutPageProps {
+  lang?: string;
+}
+
+export default function AboutPage({ lang }: AboutPageProps) {
+  const { language } = useLanguage();
+  const currentLang = lang || language;
+
   return (
     <motion.div
       className="container py-6 px-4 sm:px-6 lg:px-8 mx-auto"
@@ -87,27 +95,29 @@ export default function AboutPage() {
         className="text-4xl font-bold mb-8 text-center"
         variants={fadeInUp}
       >
-        About WitAqua
+        {currentLang === "en" ? "About WitAqua" : "WitAquaについて"}
       </motion.h1>
       <motion.section className="mb-12 text-left" variants={fadeInUp}>
         <p className="text-lg mb-4">
-          {
-            "We're a small team of passionate Android enthusiasts from Japan, and we've come together to create something special. It all started because we love the simplicity of stock Android but felt it could use a little more personality and practicality without all the unnecessary bloat. So, we rolled up our sleeves and got to work, crafting a clean, and responsive."
-          }
+          {currentLang === "en"
+            ? "We're a small team of passionate Android enthusiasts from Japan, and we've come together to create something special. It all started because we love the simplicity of stock Android but felt it could use a little more personality and practicality without all the unnecessary bloat. So, we rolled up our sleeves and got to work, crafting a clean, and responsive."
+            : "私たちは日本のAndroid愛好家の小さなチームで、特別なものを作るために集まりました。ストックAndroidのシンプルさが好きでしたが、不要なブロートウェアなしでもう少しパーソナリティと実用性が必要だと感じたことがきっかけでした。そこで、私たちは腕まくりをして、クリーンでレスポンシブなROMの作成に取り掛かりました。"}
         </p>
         <p className="text-lg mb-4">
-          {
-            "We kept the core Android experience intact while adding some carefully chosen enhancements to make your device more customizable, and just plain better to use. We're not a big corporation or a fancy tech giant. We're just a group of like-minded developers who love tinkering with Android and making it better for everyone."
-          }
+          {currentLang === "en"
+            ? "We kept the core Android experience intact while adding some carefully chosen enhancements to make your device more customizable, and just plain better to use. We're not a big corporation or a fancy tech giant. We're just a group of like-minded developers who love tinkering with Android and making it better for everyone."
+            : "Androidの核となる体験を損なうことなく、デバイスをよりカスタマイズしやすく、より使いやすくするために慎重に選ばれた機能強化を加えました。私たちは大企業や華やかな技術大手ではありません。Androidをいじるのが好きで、みんなのためにより良いものを作りたいと思っている開発者のグループです。"}
         </p>
         <p className="text-lg">
-          {
-            "So, whether you're here to try something new, or just curious about what we're building, welcome to WitAqua! We're excited to have you join us on this journey at a time."
-          }
+          {currentLang === "en"
+            ? "So, whether you're here to try something new, or just curious about what we're building, welcome to WitAqua! We're excited to have you join us on this journey at a time."
+            : "新しいものを試してみたい方も、私たちが何を作っているのか興味がある方も、WitAquaへようこそ！この旅に参加していただけることを嬉しく思います。"}
         </p>
       </motion.section>
       <motion.section variants={fadeInUp}>
-        <h2 className="text-2xl font-semibold mb-6 text-center">Our Team</h2>
+        <h2 className="text-2xl font-semibold mb-6 text-center">
+          {currentLang === "en" ? "Our Team" : "私たちのチーム"}
+        </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 justify-items-center">
           {teamMembers.map((member, index) => (
             <motion.div

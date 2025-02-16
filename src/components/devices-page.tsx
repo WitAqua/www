@@ -1,31 +1,54 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { LuDownload, LuGithub, LuSearch } from "react-icons/lu";
+import { LuSearch } from "react-icons/lu";
 import { TbAlertTriangle } from "react-icons/tb";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-  DialogTrigger,
-} from "@/components/ui/dialog";
 import type { Device } from "@/types/device";
+import { useLanguage } from "../contexts/LanguageContext";
+import { useRouter } from "next/navigation";
+import type React from "react";
 
-export default function DevicesPage() {
+const translations = {
+  en: {
+    searchDevices: "Search devices...",
+    loading: "Loading devices...",
+    error: "Error: ",
+    errorTryAgain: "Please try again later or contact support.",
+    deprecatedDevices: "Deprecated Devices",
+    androidVersion: "Android",
+    latestBuild: "Latest build:",
+  },
+  ja: {
+    searchDevices: "デバイスを検索...",
+    loading: "デバイスを読み込んでいます...",
+    error: "エラー: ",
+    errorTryAgain:
+      "後でもう一度お試しいただくか、サポートにお問い合わせください。",
+    deprecatedDevices: "非推奨デバイス",
+    androidVersion: "Android",
+    latestBuild: "最新ビルド：",
+  },
+};
+
+interface DevicesPageProps {
+  lang?: string;
+}
+
+export default function DevicesPage({ lang }: DevicesPageProps) {
   const [devices, setDevices] = useState<Device[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const { language } = useLanguage();
+  const currentLang = lang || language;
+  const t = translations[currentLang as keyof typeof translations];
 
   useEffect(() => {
     const fetchDevicesData = async () => {
@@ -39,7 +62,7 @@ export default function DevicesPage() {
           );
         }
         const data = await response.json();
-        setDevices(data.devices); // Assuming the JSON contains an array of devices under 'devices'
+        setDevices(data.devices);
       } catch (e) {
         console.error("Error loading devices:", e);
         setError("Failed to load devices data");
@@ -82,7 +105,7 @@ export default function DevicesPage() {
         <div className="relative flex items-center">
           <LuSearch className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
           <Input
-            placeholder="Search devices..."
+            placeholder={t.searchDevices}
             className="pl-10 w-full"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
@@ -90,10 +113,10 @@ export default function DevicesPage() {
         </div>
 
         {loading ? (
-          <div className="text-center">Loading devices...</div>
+          <div className="text-center">{t.loading}</div>
         ) : error ? (
           <div className="text-center text-red-500">
-            Error: {error}. Please try again later or contact support.
+            {t.error} {error}. {t.errorTryAgain}
           </div>
         ) : (
           <Accordion type="multiple" className="w-full">
@@ -103,7 +126,11 @@ export default function DevicesPage() {
                 <AccordionContent>
                   <div className="space-y-2">
                     {devices.map((device) => (
-                      <DeviceItem key={device.codename} device={device} />
+                      <DeviceListItem
+                        key={device.codename}
+                        device={device}
+                        lang={currentLang}
+                      />
                     ))}
                   </div>
                 </AccordionContent>
@@ -112,12 +139,16 @@ export default function DevicesPage() {
             {deprecatedDevices.length > 0 && (
               <AccordionItem value="deprecated">
                 <AccordionTrigger className="text-lg text-yellow-600 dark:text-yellow-400">
-                  Deprecated Devices
+                  {t.deprecatedDevices}
                 </AccordionTrigger>
                 <AccordionContent>
                   <div className="space-y-2">
                     {deprecatedDevices.map((device) => (
-                      <DeviceItem key={device.codename} device={device} />
+                      <DeviceListItem
+                        key={device.codename}
+                        device={device}
+                        lang={currentLang}
+                      />
                     ))}
                   </div>
                 </AccordionContent>
@@ -130,114 +161,55 @@ export default function DevicesPage() {
   );
 }
 
-function DeviceItem({ device }: { device: Device }) {
-  const [changelog, setChangelog] = useState("");
+interface DeviceListItemProps {
+  device: Device;
+  lang: string;
+}
 
-  const handleFetchChangelog = async () => {
-    try {
-      const response = await fetch(
-        `https://raw.githubusercontent.com/WitAqua/WitAquaOTA/refs/heads/main/changelog/${device.codename}`,
-      );
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      const text = await response.text();
-      setChangelog(text);
-    } catch (error) {
-      console.error("Error fetching changelog:", error);
-      setChangelog(
-        `Failed to load changelog for ${device.name} (${device.codename}). Please try again later.`,
-      );
-    }
+function DeviceListItem({ device, lang }: DeviceListItemProps) {
+  const { language } = useLanguage();
+  const currentLang = lang || language;
+  const t = translations[currentLang as keyof typeof translations];
+  const router = useRouter();
+
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+    e.preventDefault();
+    const path =
+      currentLang === "en"
+        ? `/devices/${device.codename}`
+        : `/ja/devices/${device.codename}`;
+    router.push(path);
   };
 
   return (
-    <div
-      className={`flex flex-col sm:flex-row justify-between w-full p-4 rounded-lg ${device.deprecated ? "bg-yellow-100 dark:bg-yellow-900" : "hover:bg-muted"}`}
+    <a
+      href={`/devices/${device.codename}`}
+      onClick={handleClick}
+      className="block"
     >
-      <div className="flex flex-col">
-        <div className="flex items-center">
-          <span className="font-medium">{device.name}</span>
-          {device.deprecated && (
-            <TbAlertTriangle className="ml-2 h-4 w-4 text-yellow-600 dark:text-yellow-400" />
-          )}
-        </div>
-        <span className="text-sm text-muted-foreground">{device.codename}</span>
-        <span className="text-sm text-muted-foreground">
-          Android {device.latestAndroidVersion} | Latest build:{" "}
-          {device.latestBuildDate}
-        </span>
-        <div className="flex items-center mt-1">
-          <span className="text-sm text-muted-foreground mr-2">
-            Maintainer: {device.maintainer.name}
+      <div
+        className={`flex flex-col sm:flex-row justify-between w-full p-4 rounded-lg ${
+          device.deprecated
+            ? "bg-yellow-100 dark:bg-yellow-900"
+            : "hover:bg-accent"
+        }`}
+      >
+        <div className="flex flex-col">
+          <div className="flex items-center">
+            <span className="font-medium">{device.name}</span>
+            {device.deprecated && (
+              <TbAlertTriangle className="ml-2 h-4 w-4 text-yellow-600 dark:text-yellow-400" />
+            )}
+          </div>
+          <span className="text-sm text-muted-foreground">
+            {device.codename}
           </span>
-          {device.maintainer.github && (
-            <a
-              href={`https://github.com/${device.maintainer.github}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-primary hover:text-primary-focus"
-            >
-              <LuGithub className="h-4 w-4" />
-            </a>
-          )}
+          <span className="text-sm text-muted-foreground">
+            {t.androidVersion} {device.latestAndroidVersion} | {t.latestBuild}{" "}
+            {device.latestBuildDate}
+          </span>
         </div>
       </div>
-      <div className="flex items-center gap-2 mt-2 sm:mt-0 overflow-x-auto">
-        <Dialog>
-          <DialogTrigger asChild>
-            <Button variant="outline" size="sm" onClick={handleFetchChangelog}>
-              Changelog
-            </Button>
-          </DialogTrigger>
-          <DialogContent>
-            <DialogHeader>
-              <DialogTitle>Changelog for {device.name}</DialogTitle>
-              <DialogDescription asChild>
-                <div className="mt-2">
-                  <pre className="whitespace-pre-wrap font-mono text-sm">
-                    {changelog}
-                  </pre>
-                </div>
-              </DialogDescription>
-            </DialogHeader>
-          </DialogContent>
-        </Dialog>
-        <Button
-          size="sm"
-          onClick={() => window.open(device.downloadUrl, "_blank")}
-        >
-          <LuDownload className="mr-2 h-4 w-4" />
-          Latest
-        </Button>
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={() => window.open(`${device.archiveUrl}`, "_blank")}
-        >
-          <LuDownload className="mr-2 h-4 w-4" />
-          Archive
-        </Button>
-
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={() => window.open(`${device.imgsUrl}`, "_blank")}
-        >
-          <LuDownload className="mr-2 h-4 w-4" />
-          Images
-        </Button>
-
-        {device.installUrl && (
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => window.open(device.installUrl, "_blank")}
-          >
-            Install Instructions
-          </Button>
-        )}
-      </div>
-    </div>
+    </a>
   );
 }

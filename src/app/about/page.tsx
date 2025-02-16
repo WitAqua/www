@@ -1,11 +1,11 @@
-import AboutPage from '@/components/about-page'
+import AboutPage from "../../components/about-page";
+import type { Metadata } from "next";
 
-export const metadata = {
-  title: 'About',
-  description: 'About WitAqua.',
-}
+export const metadata: Metadata = {
+  title: "About",
+  description: "About WitAqua.",
+};
 
 export default function About() {
-  return <AboutPage />
+  return <AboutPage lang="en" />;
 }
-
