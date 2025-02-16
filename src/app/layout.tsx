@@ -13,10 +13,9 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: {
     default: "WitAqua",
-    template: "%s | WitAqua",
+    template: "%s / WitAqua",
   },
-  description:
-    "A custom Android ROM developed by Japanese Android enthusiasts.",
+  description: "A custom Android ROM based on LineageOS.",
 };
 
 export default function RootLayout({
