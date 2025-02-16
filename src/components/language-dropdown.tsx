@@ -8,7 +8,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { LuGlobe } from "react-icons/lu";
+import { IoLanguage } from "react-icons/io5";
 import { useState } from "react";
 
 const languages = [
@@ -36,7 +36,7 @@ export function LanguageDropdown() {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" size="icon" disabled={isChanging}>
-          <LuGlobe className="h-[1.2rem] w-[1.2rem]" />
+          <IoLanguage className="h-[1.2rem] w-[1.2rem]" />
           <span className="sr-only">Switch language</span>
         </Button>
       </DropdownMenuTrigger>
