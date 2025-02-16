@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 import { LuGithub } from "react-icons/lu";
 import { RxDragHandleDots2 } from "react-icons/rx";
@@ -8,17 +7,15 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "./theme-toggle";
 import { FaXTwitter } from "react-icons/fa6";
-import { PiDotsSixVerticalFill } from "react-icons/pi";
 import { LanguageDropdown } from "./language-dropdown";
+import { DropdownMenu } from "@radix-ui/react-dropdown-menu";
+import { DropdownMenuTrigger } from "./ui/dropdown-menu";
+import { DropdownMenuItem } from "./ui/dropdown-menu";
+import { DropdownMenuContent } from "./ui/dropdown-menu";
 import { useLanguage } from "../contexts/LanguageContext";
 
 export function SiteHeader() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { language } = useLanguage();
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
 
   const localizedHref = (path: string) => {
     if (path === "/") {
@@ -57,53 +54,60 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex items-center space-x-2 sm:space-x-3 ml-auto">
-          <Link href="https://github.com/WitAqua">
+          <Link href="https://github.com/WitAqua" className="hidden sm:flex">
             <Button variant="ghost" size="icon">
               <LuGithub className="h-5 w-5" />
             </Button>
           </Link>
-          <Link href="https://x.com/WitAquaROM">
+          <Link href="https://x.com/WitAquaROM" className="hidden sm:flex">
             <Button variant="ghost" size="icon">
               <FaXTwitter className="h-5 w-5" />
             </Button>
           </Link>
           <LanguageDropdown />
           <ThemeToggle />
-          <button
-            className="block sm:hidden"
-            onClick={toggleMenu}
-            aria-label="Toggle Menu"
-          >
-            {isMenuOpen ? (
-              <PiDotsSixVerticalFill className="h-6 w-6" />
-            ) : (
-              <RxDragHandleDots2 className="h-6 w-6" />
-            )}
-          </button>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild className="sm:hidden">
+              <Button variant="ghost" size="icon">
+                <RxDragHandleDots2 className="h-6 w-6" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="start">
+              <DropdownMenuItem asChild>
+                <Link
+                  href={localizedHref("/devices")}
+                  className="text-sm font-medium transition-colors hover:text-primary"
+                >
+                  {language === "en" ? "Devices" : "デバイス"}
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link
+                  href={localizedHref("/about")}
+                  className="text-sm font-medium transition-colors hover:text-primary"
+                >
+                  {language === "en" ? "About" : "私たちについて"}
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link
+                  href="https://github.com/WitAqua"
+                  className="items-center justify-center"
+                >
+                  <LuGithub className="h-5 w-5" />
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link
+                  href="https://x.com/WitAquaROM"
+                  className="items-center justify-center"
+                >
+                  <FaXTwitter className="h-5 w-5" />
+                </Link>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
-      </div>
-
-      <div
-        className={`sm:hidden bg-background/95 overflow-hidden transition-all duration-300 ${
-          isMenuOpen ? "max-h-screen" : "max-h-0"
-        }`}
-      >
-        <nav className="flex flex-col space-y-2 p-4">
-          <Link
-            href={localizedHref("/devices")}
-            className="text-sm font-medium transition-colors hover:text-primary"
-            onClick={toggleMenu}
-          >
-            {language === "en" ? "Devices" : "デバイス"}
-          </Link>
-          <Link
-            href={localizedHref("/about")}
-            className="text-sm font-medium transition-colors hover:text-primary"
-            onClick={toggleMenu}
-          >
-            {language === "en" ? "About" : "私たちについて"}
-          </Link>
-        </nav>
       </div>
     </header>
   );
