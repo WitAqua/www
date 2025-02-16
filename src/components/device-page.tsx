@@ -174,7 +174,7 @@ export default function DevicePage({ codename }: DevicePageProps) {
             </DialogTrigger>
             <DialogContent>
               <DialogHeader>
-                <DialogTitle>{device.name}</DialogTitle>
+                <DialogTitle>{t.changelog}</DialogTitle>
                 <DialogDescription asChild>
                   <div className="mt-2">
                     <pre className="whitespace-pre-wrap font-mono text-sm">
