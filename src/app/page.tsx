@@ -3,8 +3,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Home | WitAqua",
-  description:
-    "WitAqua - A custom Android ROM developed by Japanese Android enthusiasts.",
+  description: "Minimal, Liquid, Android.",
 };
 
 export default function Home() {
