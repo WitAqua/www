@@ -65,6 +65,13 @@ const teamMembers = [
     image: "/garry050.png",
     github: "garry050",
   },
+  {
+    name: "Ruron",
+    role: "Developer",
+    image: "/ruron.png",
+    github: "RuronKun3141",
+    twitter: "RuronKun_PC",
+  },
 ];
 
 const fadeInUp = {
