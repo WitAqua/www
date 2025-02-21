@@ -104,7 +104,7 @@ export default function HomePage() {
               <Link
                 href="https://wiki.witaqua.org"
                 target="_blank"
-                rel="noopener"
+                rel="noreferrer noopener"
               >
                 <Button className="bg-cyan-400" size="lg">
                   Wiki
@@ -182,7 +182,11 @@ export default function HomePage() {
                     ? "To get started, visit our GitHub repository."
                     : "始めるには、私たちのGitHubリポジトリを訪れてください。"}
                 </p>
-                <Link href="https://github.com/WitAqua">
+                <Link
+                  href="https://github.com/WitAqua"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
                   <Button>
                     {language === "en" ? "Click Here" : "ここをクリック"}{" "}
                     <LuArrowRight className="ml-2 h-4 w-4" />

@@ -55,12 +55,22 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex items-center space-x-2 sm:space-x-3 ml-auto">
-          <Link href="https://github.com/WitAqua" className="hidden sm:flex">
+          <Link
+            href="https://github.com/WitAqua"
+            className="hidden sm:flex"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
             <Button variant="ghost" size="icon">
               <LuGithub className="h-5 w-5" />
             </Button>
           </Link>
-          <Link href="https://x.com/WitAquaROM" className="hidden sm:flex">
+          <Link
+            href="https://x.com/WitAquaROM"
+            className="hidden sm:flex"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
             <Button variant="ghost" size="icon">
               <FaXTwitter className="h-5 w-5" />
             </Button>
@@ -68,6 +78,8 @@ export function SiteHeader() {
           <Link
             href="https://github.com/orgs/WitAqua/discussions"
             className="hidden sm:flex"
+            target="_blank"
+            rel="noreferrer noopener"
           >
             <Button variant="ghost" size="icon">
               <MdOutlineForum className="h-5 w-5" />
@@ -102,6 +114,8 @@ export function SiteHeader() {
                 <Link
                   href="https://github.com/WitAqua"
                   className="items-center cursor-pointer justify-center"
+                  target="_blank"
+                  rel="noreferrer noopener"
                 >
                   <LuGithub className="h-5 w-5" />
                 </Link>
@@ -110,6 +124,8 @@ export function SiteHeader() {
                 <Link
                   href="https://x.com/WitAquaROM"
                   className="items-center cursor-pointer justify-center"
+                  target="_blank"
+                  rel="noreferrer noopener"
                 >
                   <FaXTwitter className="h-5 w-5" />
                 </Link>
@@ -118,6 +134,8 @@ export function SiteHeader() {
                 <Link
                   href="https://github.com/orgs/WitAqua/discussions"
                   className="items-center cursor-pointer justify-center"
+                  target="_blank"
+                  rel="noreferrer noopener"
                 >
                   <MdOutlineForum className="h-5 w-5" />
                 </Link>
