@@ -45,7 +45,7 @@ export function LanguageDropdown() {
           <DropdownMenuItem
             key={lang.code}
             onClick={() => handleLanguageChange(lang.code as "en" | "ja")}
-            className={language === lang.code ? "bg-accent" : ""}
+            className={language === lang.code ? "bg-accent" : "cursor-pointer"}
             disabled={isChanging}
           >
             {lang.name}

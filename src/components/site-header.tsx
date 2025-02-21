@@ -85,7 +85,7 @@ export function SiteHeader() {
               <DropdownMenuItem asChild>
                 <Link
                   href={localizedHref("/devices")}
-                  className="text-sm font-medium justify-center transition-colors hover:text-primary"
+                  className="text-sm cursor-pointer font-medium justify-center transition-colors hover:text-primary"
                 >
                   {language === "en" ? "Devices" : "デバイス"}
                 </Link>
@@ -93,7 +93,7 @@ export function SiteHeader() {
               <DropdownMenuItem asChild>
                 <Link
                   href={localizedHref("/about")}
-                  className="text-sm font-medium justify-center transition-colors hover:text-primary"
+                  className="text-sm cursor-pointer font-medium justify-center transition-colors hover:text-primary"
                 >
                   {language === "en" ? "About" : "私たちについて"}
                 </Link>
@@ -101,7 +101,7 @@ export function SiteHeader() {
               <DropdownMenuItem asChild>
                 <Link
                   href="https://github.com/WitAqua"
-                  className="items-center justify-center"
+                  className="items-center cursor-pointer justify-center"
                 >
                   <LuGithub className="h-5 w-5" />
                 </Link>
@@ -109,7 +109,7 @@ export function SiteHeader() {
               <DropdownMenuItem asChild>
                 <Link
                   href="https://x.com/WitAquaROM"
-                  className="items-center justify-center"
+                  className="items-center cursor-pointer justify-center"
                 >
                   <FaXTwitter className="h-5 w-5" />
                 </Link>
@@ -117,7 +117,7 @@ export function SiteHeader() {
               <DropdownMenuItem asChild>
                 <Link
                   href="https://github.com/orgs/WitAqua/discussions"
-                  className="items-center justify-center"
+                  className="items-center cursor-pointer justify-center"
                 >
                   <MdOutlineForum className="h-5 w-5" />
                 </Link>
