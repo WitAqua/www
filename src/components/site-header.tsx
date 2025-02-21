@@ -85,7 +85,7 @@ export function SiteHeader() {
               <DropdownMenuItem asChild>
                 <Link
                   href={localizedHref("/devices")}
-                  className="text-sm font-medium transition-colors hover:text-primary"
+                  className="text-sm font-medium justify-center transition-colors hover:text-primary"
                 >
                   {language === "en" ? "Devices" : "デバイス"}
                 </Link>
@@ -93,7 +93,7 @@ export function SiteHeader() {
               <DropdownMenuItem asChild>
                 <Link
                   href={localizedHref("/about")}
-                  className="text-sm font-medium transition-colors hover:text-primary"
+                  className="text-sm font-medium justify-center transition-colors hover:text-primary"
                 >
                   {language === "en" ? "About" : "私たちについて"}
                 </Link>
