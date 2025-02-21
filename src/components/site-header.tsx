@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { LuGithub } from "react-icons/lu";
+import { MdOutlineForum } from "react-icons/md";
 import { RxDragHandleDots2 } from "react-icons/rx";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
@@ -64,6 +65,14 @@ export function SiteHeader() {
               <FaXTwitter className="h-5 w-5" />
             </Button>
           </Link>
+          <Link
+            href="https://github.com/orgs/WitAqua/discussions"
+            className="hidden sm:flex"
+          >
+            <Button variant="ghost" size="icon">
+              <MdOutlineForum className="h-5 w-5" />
+            </Button>
+          </Link>
           <LanguageDropdown />
           <ThemeToggle />
           <DropdownMenu>
@@ -103,6 +112,14 @@ export function SiteHeader() {
                   className="items-center justify-center"
                 >
                   <FaXTwitter className="h-5 w-5" />
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link
+                  href="https://github.com/orgs/WitAqua/discussions"
+                  className="items-center justify-center"
+                >
+                  <MdOutlineForum className="h-5 w-5" />
                 </Link>
               </DropdownMenuItem>
             </DropdownMenuContent>
