@@ -8,7 +8,7 @@ interface Props {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { codename } = await params;
   return {
-    title: `Device: ${codename} | WitAqua`,
+    title: `${codename}`,
   };
 }
 
