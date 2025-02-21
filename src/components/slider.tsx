@@ -89,6 +89,7 @@ export default function ImageSlider(): JSX.Element {
               width={1440}
               height={700}
               className="rounded-lg object-contain w-full h-auto md:h-[600px]"
+              draggable="false"
             />
           </div>
         ))}

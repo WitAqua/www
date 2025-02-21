@@ -80,6 +80,7 @@ export default function HomePage() {
               height={100}
               priority
               variants={fadeIn}
+              draggable="false"
             />
             <motion.h1
               className="font-heading text-3xl sm:text-5xl md:text-6xl lg:text-7xl"
