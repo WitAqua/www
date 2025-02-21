@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
-import { useLanguage } from "../contexts/LanguageContext"
+import { useLanguage } from "../contexts/LanguageContext";
 
 export function SiteFooter() {
-  const { language } = useLanguage()
+  const { language } = useLanguage();
   return (
     <footer className="border-t bg-background">
       <div className="container mx-auto flex flex-col items-center justify-between gap-6 px-4 py-6 sm:px-6 lg:px-8 md:flex-row md:py-4">
@@ -14,7 +14,7 @@ export function SiteFooter() {
             <a
               href="https://github.com/WitAqua/www"
               target="_blank"
-              rel="noreferrer"
+              rel="noreferrer noopener"
               className="font-medium underline underline-offset-4"
             >
               {language === "en" ? "open source" : "オープンソース"}
@@ -24,6 +24,5 @@ export function SiteFooter() {
         </div>
       </div>
     </footer>
-  )
+  );
 }
-
