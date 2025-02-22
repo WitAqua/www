@@ -52,6 +52,14 @@ export function SiteHeader() {
           >
             {language === "en" ? "About" : "私たちについて"}
           </Link>
+          <Link
+            href="https://gerrit.witaqua.org"
+            className="text-sm font-medium transition-colors hover:text-primary"
+            target="_blank"
+            rel="norefferer oopener"
+          >
+            Gerrit
+          </Link>
         </nav>
 
         <div className="flex items-center space-x-2 sm:space-x-3 ml-auto">
@@ -108,6 +116,16 @@ export function SiteHeader() {
                   className="text-sm cursor-pointer font-medium justify-center transition-colors hover:text-primary"
                 >
                   {language === "en" ? "About" : "私たちについて"}
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link
+                  href="https://gerrit.witaqua.org"
+                  className="text-sm cursor-pointer font-medium justify-center transition-colors hover:text-primary"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
+                  Gerrit
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
