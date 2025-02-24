@@ -53,7 +53,9 @@ export default function DevicesPage({ lang }: DevicesPageProps) {
   useEffect(() => {
     const fetchDevicesData = async () => {
       try {
-        const response = await fetch("/data.json");
+        const response = await fetch(
+          "https://raw.githubusercontent.com/WitAqua/WitAquaOTA/refs/heads/main/data/devices.json",
+        );
         if (!response.ok) {
           throw new Error(
             `Failed to fetch devices data. Status: ${response.status}`,
