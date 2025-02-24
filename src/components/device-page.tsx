@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { LuDownload, LuGithub } from "react-icons/lu";
 import { Button } from "@/components/ui/button";
 import {
@@ -61,6 +61,7 @@ export default function DevicePage({ codename }: DevicePageProps) {
   const [error, setError] = useState<string | null>(null);
   const { language } = useLanguage();
   const t = translations[language];
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const fetchDeviceData = async () => {
@@ -93,7 +94,7 @@ export default function DevicePage({ codename }: DevicePageProps) {
     fetchDeviceData();
   }, [codename, t.deviceNotFound]);
 
-  const handleFetchChangelog = async () => {
+  const fetchChangelog = useCallback(async () => {
     try {
       const response = await fetch(
         `https://raw.githubusercontent.com/WitAqua/WitAquaOTA/refs/heads/main/changelog/${codename}`,
@@ -109,6 +110,19 @@ export default function DevicePage({ codename }: DevicePageProps) {
         `Failed to load changelog for ${device?.name} (${codename}). Please try again later.`,
       );
     }
+  }, [codename, device?.name]);
+
+  useEffect(() => {
+    if (window.location.hash === "#changelog") {
+      setOpen(true);
+      fetchChangelog();
+    }
+  }, [fetchChangelog]);
+
+  const handleFetchChangelog = async () => {
+    await fetchChangelog();
+    window.location.hash = "changelog";
+    setOpen(true);
   };
 
   const handleButtonClick = (url: string) => {
@@ -198,7 +212,7 @@ export default function DevicePage({ codename }: DevicePageProps) {
           </p>
         </div>
         <div className="flex flex-wrap gap-4">
-          <Dialog>
+          <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
               <Button variant="outline" onClick={handleFetchChangelog}>
                 {t.changelog}
