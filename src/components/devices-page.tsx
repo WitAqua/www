@@ -203,7 +203,11 @@ function DeviceListItem({ device, lang }: DeviceListItemProps) {
             {device.codename}
           </span>
           <span className="text-sm text-muted-foreground">
-            {t.androidVersion} {device.latestAndroidVersion} | {t.latestBuild}{" "}
+            {t.androidVersion}{" "}
+            {device.latestAndroidVersion.toString().includes(".")
+              ? `${device.latestAndroidVersion.toString().split(".")[0]} (QPR${device.latestAndroidVersion.toString().split(".")[1]})`
+              : device.latestAndroidVersion}{" "}
+            | {t.latestBuild}{" "}
             {new Date(device.datetime * 1000).toLocaleDateString()}
           </span>
         </div>

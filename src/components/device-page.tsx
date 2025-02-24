@@ -168,7 +168,11 @@ export default function DevicePage({ codename }: DevicePageProps) {
           <p className="text-lg font-bold">
             {t.androidVersion}
             {" Version: "}
-            <span className="font-normal">{device.latestAndroidVersion}</span>
+            <span className="font-normal">
+              {device.latestAndroidVersion.toString().includes(".")
+                ? `${device.latestAndroidVersion.toString().split(".")[0]} (QPR${device.latestAndroidVersion.toString().split(".")[1]})`
+                : device.latestAndroidVersion}
+            </span>
           </p>
           <p className="text-lg font-bold">
             {t.latestBuild}{" "}
