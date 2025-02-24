@@ -177,7 +177,15 @@ export default function DevicePage({ codename }: DevicePageProps) {
           <p className="text-lg font-bold">
             {t.latestBuild}{" "}
             <span className="font-normal">
-              {new Date(device.datetime * 1000).toLocaleString()}
+              {new Date(device.datetime * 1000).toLocaleDateString(
+                window.location.pathname.startsWith("/ja") ? "ja-JP" : "en-US",
+                {
+                  weekday: "long",
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                },
+              )}
             </span>
           </p>
         </div>
