@@ -186,9 +186,9 @@ export default function DevicePage({ codename }: DevicePageProps) {
               {new Date(device.datetime * 1000).toLocaleDateString(
                 window.location.pathname.startsWith("/ja") ? "ja-JP" : "en-US",
                 {
-                  weekday: "long",
+                  weekday: "short",
                   year: "numeric",
-                  month: "long",
+                  month: "short",
                   day: "numeric",
                 },
               )}
