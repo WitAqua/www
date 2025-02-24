@@ -59,6 +59,14 @@ export function SiteHeader() {
           >
             Gerrit
           </Link>
+          <Link
+            href="https://wiki.witaqua.org"
+            className="text-sm font-medium transition-colors hover:text-primary"
+            target="_blank"
+            rel="norefferer oopener"
+          >
+            Wiki
+          </Link>
         </nav>
 
         <div className="flex items-center space-x-2 sm:space-x-3 ml-auto">
@@ -125,6 +133,16 @@ export function SiteHeader() {
                   rel="noreferrer noopener"
                 >
                   Gerrit
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link
+                  href="https://wiki.witaqua.org"
+                  className="text-sm cursor-pointer font-medium justify-center transition-colors hover:text-primary"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
+                  Wiki
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>

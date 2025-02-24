@@ -104,15 +104,6 @@ export default function HomePage() {
                     : "対応デバイスを確認"}
                 </Button>
               </Link>
-              <Link
-                href="https://wiki.witaqua.org"
-                target="_blank"
-                rel="noreferrer noopener"
-              >
-                <Button className="bg-cyan-400" size="lg">
-                  Wiki
-                </Button>
-              </Link>
             </motion.div>
           </motion.div>
         </section>
