@@ -5,13 +5,13 @@
 name: Deploy Next.js site to Pages
 
 on:
-  schedule:
-    - cron: "0 0 * * *"
   push:
     branches: ["main"]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+  repository_dispatch:
+    types: [dpatch]
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
