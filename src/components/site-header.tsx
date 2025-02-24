@@ -30,13 +30,12 @@ export function SiteHeader() {
       <div className="container mx-auto flex h-14 items-center justify-start px-4 sm:px-6 lg:px-8">
         <Link href={localizedHref("/")} className="flex items-center space-x-2">
           <Image
-            src="/logo.png"
+            src="/witaqua.svg"
             width={100}
-            height={50}
+            height={100}
             alt="WitAqua Logo"
             className="h-8 w-auto"
           />
-          <span className="font-bold text-xl">WitAqua</span>
         </Link>
 
         <nav className="hidden sm:flex items-center space-x-4 sm:space-x-6 ml-6">
