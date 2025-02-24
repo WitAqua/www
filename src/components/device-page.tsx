@@ -172,7 +172,9 @@ export default function DevicePage({ codename }: DevicePageProps) {
           </p>
           <p className="text-lg font-bold">
             {t.latestBuild}{" "}
-            <span className="font-normal">{device.latestBuildDate}</span>
+            <span className="font-normal">
+              {new Date(device.datetime * 1000).toLocaleString()}
+            </span>
           </p>
         </div>
         <div className="flex flex-wrap gap-4">

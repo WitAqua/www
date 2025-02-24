@@ -11,11 +11,11 @@ export interface Device {
   downloadUrl: string;
   deprecated: boolean;
   latestAndroidVersion: number;
-  latestBuildDate: string;
   archiveUrl: string;
   imgsUrl: string;
   installUrl: string;
   filename: string;
+  datetime: number;
 }
 
 export interface DeviceResponse {

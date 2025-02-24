@@ -204,7 +204,7 @@ function DeviceListItem({ device, lang }: DeviceListItemProps) {
           </span>
           <span className="text-sm text-muted-foreground">
             {t.androidVersion} {device.latestAndroidVersion} | {t.latestBuild}{" "}
-            {device.latestBuildDate}
+            {new Date(device.datetime * 1000).toLocaleDateString()}
           </span>
         </div>
       </div>
