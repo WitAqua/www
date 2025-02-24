@@ -63,7 +63,7 @@ export default function HomePage() {
   return (
     <div className="flex min-h-screen flex-col">
       <main className="flex-1 flex flex-col items-center justify-center">
-        <section className="h-screen space-y-6 py-8 md:py-12 lg:py-24">
+        <section className="h-screen space-y-6 py-1 md:py-12 lg:py-24">
           <motion.div
             className="container flex max-w-[64rem] flex-col items-center justify-center gap-4 text-center px-4 sm:px-6 lg:px-8"
             initial="initial"
