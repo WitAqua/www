@@ -158,20 +158,20 @@ export default function DevicePage({ codename }: DevicePageProps) {
           </p>
         </div>
         <div className="mb-6">
-          <p className="text-lg font-bold">
+          <p className="text-l font-bold">
             {t.fileSize}
             <span className="font-normal">
               {(device.size / 1024 ** 3).toFixed(2)} GiB
             </span>
           </p>
-          <p className="text-lg font-bold break-all">
+          <p className="text-l font-bold break-all">
             {"MD5: "}
             <span className="font-mono font-normal select-all break-all">
               {device.md5}
             </span>
           </p>
 
-          <p className="text-lg font-bold">
+          <p className="text-l font-bold">
             {t.androidVersion}
             {": "}
             <span className="font-bold">
@@ -180,7 +180,7 @@ export default function DevicePage({ codename }: DevicePageProps) {
                 : device.latestAndroidVersion}
             </span>
           </p>
-          <p className="text-lg font-bold">
+          <p className="text-l font-bold">
             {t.latestBuild}{" "}
             <span className="font-normal">
               {new Date(device.datetime * 1000).toLocaleDateString(
