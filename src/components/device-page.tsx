@@ -213,10 +213,14 @@ export default function DevicePage({ codename }: DevicePageProps) {
           </Dialog>
           <Button
             onClick={() => handleButtonClick(device.downloadUrl)}
-            className="bg-cyan-400 hover:bg-cyan-600"
+            className="bg-cyan-400 hover:bg-cyan-600 flex items-center max-w-[300px] sm:max-w-[200px] lg:max-w-[250px] overflow-hidden"
           >
-            <LuDownload className="mr-2 h-4 w-4" />
-            {device.filename}
+            <div className="overflow-hidden whitespace-nowrap flex-1 min-w-0 relative">
+              <span className="inline-block animate-marquee">
+                {device.filename}
+              </span>
+            </div>
+            <LuDownload className="flex-shrink-0 ml-2 h-4 w-4" />
           </Button>
           <Button
             variant="outline"
