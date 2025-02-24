@@ -99,7 +99,9 @@ export default function HomePage() {
             <motion.div className="space-x-7" variants={fadeIn}>
               <Link href={language === "en" ? "/devices" : "/ja/devices"}>
                 <Button size="lg" className="bg-cyan-400">
-                  {language === "en" ? "Download Now" : "ダウンロード"}
+                  {language === "en"
+                    ? "See Supported Devices"
+                    : "対応デバイスを確認"}
                 </Button>
               </Link>
               <Link
