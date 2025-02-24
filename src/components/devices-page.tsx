@@ -21,7 +21,6 @@ const translations = {
     loading: "Loading devices...",
     error: "Error: ",
     errorTryAgain: "Please try again later or contact support.",
-    deprecatedDevices: "Deprecated Devices",
     androidVersion: "Android",
     latestBuild: "Latest build:",
   },
@@ -31,7 +30,6 @@ const translations = {
     error: "エラー: ",
     errorTryAgain:
       "後でもう一度お試しいただくか、サポートにお問い合わせください。",
-    deprecatedDevices: "非推奨デバイス",
     androidVersion: "Android",
     latestBuild: "最新ビルド：",
   },
@@ -50,12 +48,12 @@ export default function DevicesPage({ lang }: DevicesPageProps) {
   const currentLang = lang || language;
   const t = translations[currentLang as keyof typeof translations];
 
+  const [openSections, setOpenSections] = useState<string[]>([]);
+
   useEffect(() => {
     const fetchDevicesData = async () => {
       try {
-        const response = await fetch(
-          "https://raw.githubusercontent.com/WitAqua/WitAquaOTA/refs/heads/main/data/devices.json",
-        );
+        const response = await fetch("/data.json");
         if (!response.ok) {
           throw new Error(
             `Failed to fetch devices data. Status: ${response.status}`,
@@ -65,7 +63,7 @@ export default function DevicesPage({ lang }: DevicesPageProps) {
         setDevices(data.devices);
       } catch (e) {
         console.error("Error loading devices:", e);
-        setError("Failed to load devices data");
+        setError("Failed to load data");
       } finally {
         setLoading(false);
       }
@@ -74,6 +72,26 @@ export default function DevicesPage({ lang }: DevicesPageProps) {
     fetchDevicesData();
   }, []);
 
+  useEffect(() => {
+    if (searchQuery) {
+      const matchedBrands = new Set(
+        devices
+          .filter(
+            (device) =>
+              device.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+              device.codename
+                .toLowerCase()
+                .includes(searchQuery.toLowerCase()) ||
+              device.brand.toLowerCase().includes(searchQuery.toLowerCase()),
+          )
+          .map((device) => device.brand),
+      );
+      setOpenSections(Array.from(matchedBrands));
+    } else {
+      setOpenSections([]);
+    }
+  }, [searchQuery, devices]);
+
   const filteredDevices = devices.filter(
     (device) =>
       device.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -81,22 +99,15 @@ export default function DevicesPage({ lang }: DevicesPageProps) {
       device.brand.toLowerCase().includes(searchQuery.toLowerCase()),
   );
 
-  const { deprecatedDevices, activeDevices } = filteredDevices.reduce(
+  const categorizedDevices = filteredDevices.reduce(
     (acc, device) => {
-      if (device.deprecated) {
-        acc.deprecatedDevices.push(device);
-      } else {
-        if (!acc.activeDevices[device.brand]) {
-          acc.activeDevices[device.brand] = [];
-        }
-        acc.activeDevices[device.brand].push(device);
+      if (!acc[device.brand]) {
+        acc[device.brand] = [];
       }
+      acc[device.brand].push(device);
       return acc;
     },
-    { deprecatedDevices: [], activeDevices: {} } as {
-      deprecatedDevices: Device[];
-      activeDevices: Record<string, Device[]>;
-    },
+    {} as Record<string, Device[]>,
   );
 
   return (
@@ -119,8 +130,13 @@ export default function DevicesPage({ lang }: DevicesPageProps) {
             {t.error} {error}. {t.errorTryAgain}
           </div>
         ) : (
-          <Accordion type="multiple" className="w-full">
-            {Object.entries(activeDevices).map(([brand, devices]) => (
+          <Accordion
+            type="multiple"
+            className="w-full"
+            value={openSections}
+            onValueChange={setOpenSections}
+          >
+            {Object.entries(categorizedDevices).map(([brand, devices]) => (
               <AccordionItem key={brand} value={brand}>
                 <AccordionTrigger className="text-lg">{brand}</AccordionTrigger>
                 <AccordionContent>
@@ -136,24 +152,6 @@ export default function DevicesPage({ lang }: DevicesPageProps) {
                 </AccordionContent>
               </AccordionItem>
             ))}
-            {deprecatedDevices.length > 0 && (
-              <AccordionItem value="deprecated">
-                <AccordionTrigger className="text-lg text-yellow-600 dark:text-yellow-400">
-                  {t.deprecatedDevices}
-                </AccordionTrigger>
-                <AccordionContent>
-                  <div className="space-y-2">
-                    {deprecatedDevices.map((device) => (
-                      <DeviceListItem
-                        key={device.codename}
-                        device={device}
-                        lang={currentLang}
-                      />
-                    ))}
-                  </div>
-                </AccordionContent>
-              </AccordionItem>
-            )}
           </Accordion>
         )}
       </div>
