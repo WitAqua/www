@@ -127,7 +127,7 @@ export default function DevicePage({ codename }: DevicePageProps) {
 
   return (
     <div className="container py-6 px-4 sm:px-6 lg:px-8 mx-auto">
-      <div className="bg-card p-8 rounded-lg shadow-md">
+      <div className="bg-cyan-50 dark:bg-gray-900 p-8 rounded-lg shadow-md">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
           <div>
             <h1 className="text-4xl font-bold mb-2 flex items-center">
@@ -144,17 +144,19 @@ export default function DevicePage({ codename }: DevicePageProps) {
         <div className="mb-8">
           <h2 className="text-2xl font-semibold mb-2">{t.maintainer}</h2>
           <p className="text-lg flex items-center">
-            {device.maintainer.name}
-            {device.maintainer.github && (
-              <a
-                href={`https://github.com/${device.maintainer.github}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="ml-2 text-primary hover:text-primary-focus"
-              >
-                <LuGithub className="inline h-5 w-5 text-cyan-400" />
-              </a>
-            )}
+            <span className="bg-cyan-200 font-medium text-black py-1 px-3 rounded-full">
+              {device.maintainer.name}
+              {device.maintainer.github && (
+                <a
+                  href={`https://github.com/${device.maintainer.github}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="ml-2 text-primary hover:text-primary-focus"
+                >
+                  <LuGithub className="inline h-5 w-5 text-blue-800" />
+                </a>
+              )}
+            </span>
           </p>
         </div>
         <div className="mb-6">
