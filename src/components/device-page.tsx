@@ -161,7 +161,7 @@ export default function DevicePage({ codename }: DevicePageProps) {
           <p className="text-l font-bold">
             {t.fileSize}
             <span className="font-normal">
-              {(device.size / 1024 ** 3).toFixed(2)} GiB
+              {(device.size / 1024 ** 3).toPrecision(2)} GB
             </span>
           </p>
           <p className="text-l font-bold break-all">
