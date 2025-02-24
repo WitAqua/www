@@ -138,22 +138,28 @@ export default function DevicesPage({ lang }: DevicesPageProps) {
             value={openSections}
             onValueChange={setOpenSections}
           >
-            {Object.entries(categorizedDevices).map(([brand, devices]) => (
-              <AccordionItem key={brand} value={brand}>
-                <AccordionTrigger className="text-lg">{brand}</AccordionTrigger>
-                <AccordionContent>
-                  <div className="space-y-2">
-                    {devices.map((device) => (
-                      <DeviceListItem
-                        key={device.codename}
-                        device={device}
-                        lang={currentLang}
-                      />
-                    ))}
-                  </div>
-                </AccordionContent>
-              </AccordionItem>
-            ))}
+            {Object.entries(categorizedDevices)
+              .sort(([brandA], [brandB]) => brandA.localeCompare(brandB))
+              .map(([brand, devices]) => (
+                <AccordionItem key={brand} value={brand}>
+                  <AccordionTrigger className="text-lg">
+                    {brand}
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    <div className="space-y-2">
+                      {devices
+                        .sort((a, b) => a.name.localeCompare(b.name))
+                        .map((device) => (
+                          <DeviceListItem
+                            key={device.codename}
+                            device={device}
+                            lang={currentLang}
+                          />
+                        ))}
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
           </Accordion>
         )}
       </div>
