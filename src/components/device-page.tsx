@@ -164,9 +164,13 @@ export default function DevicePage({ codename }: DevicePageProps) {
               {(device.size / 1024 ** 3).toFixed(2)} GiB
             </span>
           </p>
-          <p className="text-lg font-bold">
-            {"MD5:"} <span className="font-mono font-normal">{device.md5}</span>
+          <p className="text-lg font-bold break-all">
+            {"MD5: "}
+            <span className="font-mono font-normal select-all break-all">
+              {device.md5}
+            </span>
           </p>
+
           <p className="text-lg font-bold">
             {t.androidVersion}
             {": "}
