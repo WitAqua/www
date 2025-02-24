@@ -76,7 +76,7 @@ export default function HomePage() {
             <MotionImage
               src="/logo.png"
               alt="WitAqua Logo"
-              width={300}
+              width={250}
               height={100}
               priority
               variants={fadeIn}
