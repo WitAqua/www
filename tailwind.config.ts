@@ -58,9 +58,9 @@ export default {
       },
       keyframes: {
         marquee: {
-          "0%, 10%": { transform: "translateX(0%)" },
-          "90%": { transform: "translateX(-100%)" },
-          "100%": { transform: "translateX(-100%)" },
+          "0%": { transform: "translateX(0%)" }, // Start position
+          "10%": { transform: "translateX(0%)" }, // 1s delay at start
+          "100%": { transform: "translateX(-50%)" }, // Scroll just enough to loop seamlessly
         },
         "accordion-down": {
           from: {
