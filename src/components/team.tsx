@@ -36,7 +36,12 @@ export function TeamMember({
       <h3 className="text-xl font-semibold">{name}</h3>
       <p className="text-muted-foreground mb-4">{role}</p>
       <div className="flex space-x-2">
-        <Button variant="outline" size="icon" asChild>
+        <Button
+          variant="ghost"
+          className="bg-[#cdd2d4] dark:bg-[#404040] hover:bg-[#b6b9ba] hover:dark:bg-[#303030] transition-colors duration-300"
+          size="icon"
+          asChild
+        >
           <a
             href={`https://github.com/${github}`}
             target="_blank"
@@ -47,7 +52,12 @@ export function TeamMember({
           </a>
         </Button>
         {twitter && (
-          <Button variant="outline" size="icon" asChild>
+          <Button
+            variant="ghost"
+            className="bg-[#cdd2d4] dark:bg-[#404040] hover:bg-[#b6b9ba] hover:dark:bg-[#303030] transition-colors duration-300"
+            size="icon"
+            asChild
+          >
             <a
               href={`https://x.com/${twitter}`}
               target="_blank"
@@ -59,7 +69,12 @@ export function TeamMember({
           </Button>
         )}
         {telegram && (
-          <Button variant="outline" size="icon" asChild>
+          <Button
+            variant="ghost"
+            className="bg-[#cdd2d4] dark:bg-[#404040] hover:bg-[#b6b9ba] hover:dark:bg-[#303030] transition-colors duration-300"
+            size="icon"
+            asChild
+          >
             <a
               href={`https://t.me/${telegram}`}
               target="_blank"
@@ -71,7 +86,12 @@ export function TeamMember({
           </Button>
         )}
         {www && (
-          <Button variant="outline" size="icon" asChild>
+          <Button
+            variant="ghost"
+            className="bg-[#cdd2d4] dark:bg-[#404040] hover:bg-[#b6b9ba] hover:dark:bg-[#303030] transition-colors duration-300"
+            size="icon"
+            asChild
+          >
             <a
               href={`https://${www}`}
               target="_blank"

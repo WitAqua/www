@@ -12,7 +12,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import type { Device } from "@/types/device";
-import { useLanguage } from "../contexts/LanguageContext";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const translations = {
   en: {
@@ -140,8 +140,8 @@ export default function DevicePage({ codename }: DevicePageProps) {
     return <div className="text-center py-8">{t.deviceNotFound}</div>;
 
   return (
-    <div className="container py-6 px-4 sm:px-6 lg:px-8 mx-auto">
-      <div className="bg-cyan-50 dark:bg-gray-900 p-8 rounded-lg shadow-md">
+    <div className="lg:w-[68%] md:w-[70%] py-28 px-4 sm:px-6 lg:px-8 mx-auto">
+      <div className="bg-white dark:bg-[#212121] p-8 rounded-lg shadow-md">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
           <div>
             <h1 className="text-4xl font-bold mb-2 flex items-center">
@@ -158,16 +158,16 @@ export default function DevicePage({ codename }: DevicePageProps) {
         <div className="mb-8">
           <h2 className="text-2xl font-semibold mb-2">{t.maintainer}</h2>
           <p className="text-lg flex items-center">
-            <span className="bg-cyan-200 font-medium text-black py-1 px-3 rounded-full">
-              {device.maintainer.name}
+            <span className="font-medium py-1">
+              {device.maintainer.name} -
               {device.maintainer.github && (
                 <a
                   href={`https://github.com/${device.maintainer.github}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="ml-2 text-primary hover:text-primary-focus"
+                  className="ml-2"
                 >
-                  <LuGithub className="inline h-5 w-5 text-blue-800" />
+                  <LuGithub className="inline h-5 w-5 text-[#22d3ee]" />
                 </a>
               )}
             </span>
@@ -214,7 +214,11 @@ export default function DevicePage({ codename }: DevicePageProps) {
         <div className="flex flex-wrap gap-4">
           <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-              <Button variant="outline" onClick={handleFetchChangelog}>
+              <Button
+                variant="ghost"
+                className="bg-[#e8eced] dark:bg-[#404040] hover:bg-[#cdd2d4] hover:dark:bg-[#303030] transition-colors duration-300"
+                onClick={handleFetchChangelog}
+              >
                 {t.changelog}
               </Button>
             </DialogTrigger>
@@ -233,7 +237,7 @@ export default function DevicePage({ codename }: DevicePageProps) {
           </Dialog>
           <Button
             onClick={() => handleButtonClick(device.downloadUrl)}
-            className="bg-cyan-400 hover:bg-cyan-600 flex items-center max-w-[300px] sm:max-w-[200px] lg:max-w-[250px] overflow-hidden"
+            className="bg-[#00c8ff] hover:bg-[#00aeff] transition-colors duration-300 flex items-center max-w-[300px] sm:max-w-[200px] lg:max-w-[250px] overflow-hidden"
           >
             <div className="overflow-hidden whitespace-nowrap flex-1 min-w-0 relative">
               <span className="inline-block animate-marquee">
@@ -243,14 +247,16 @@ export default function DevicePage({ codename }: DevicePageProps) {
             <LuDownload className="flex-shrink-0 ml-2 h-4 w-4" />
           </Button>
           <Button
-            variant="outline"
+            variant="ghost"
+            className="bg-[#e8eced] dark:bg-[#404040] hover:bg-[#cdd2d4] hover:dark:bg-[#303030] transition-colors duration-300"
             onClick={() => handleButtonClick(device.archiveUrl)}
           >
             <LuDownload className="mr-2 h-4 w-4" />
             {t.archive}
           </Button>
           <Button
-            variant="outline"
+            variant="ghost"
+            className="bg-[#e8eced] dark:bg-[#404040] hover:bg-[#cdd2d4] hover:dark:bg-[#303030] transition-colors duration-300"
             onClick={() => handleButtonClick(device.imgsUrl)}
           >
             <LuDownload className="mr-2 h-4 w-4" />
@@ -258,7 +264,8 @@ export default function DevicePage({ codename }: DevicePageProps) {
           </Button>
           {device.installUrl && (
             <Button
-              variant="outline"
+              variant="ghost"
+              className="bg-[#e8eced] dark:bg-[#404040] hover:bg-[#cdd2d4] hover:dark:bg-[#303030] transition-colors duration-300"
               onClick={() => handleButtonClick(device.installUrl)}
             >
               {t.installInstructions}

@@ -1,8 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { TeamMember } from "./team-member";
-import { useLanguage } from "../contexts/LanguageContext";
+import { TeamMember } from "@/components/team";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const teamMembers = [
   {
@@ -90,7 +90,7 @@ export default function AboutPage({ lang }: AboutPageProps) {
 
   return (
     <motion.div
-      className="container py-6 px-4 sm:px-6 lg:px-8 mx-auto"
+      className="w-[93%] lg:w-[65%] py-28 container px-4 sm:px-6 lg:px-8 mx-auto"
       initial="initial"
       animate="animate"
       variants={{

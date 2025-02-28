@@ -11,7 +11,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import type { Device } from "@/types/device";
-import { useLanguage } from "../contexts/LanguageContext";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { useRouter } from "next/navigation";
 import type React from "react";
 
@@ -113,7 +113,7 @@ export default function DevicesPage({ lang }: DevicesPageProps) {
   );
 
   return (
-    <div className="container py-6 px-4 sm:px-6 lg:px-8 mx-auto">
+    <div className="lg:w-[65%] py-28 px-4 sm:px-6 lg:px-8 mx-auto">
       <div className="flex flex-col gap-6">
         <div className="relative flex items-center">
           <LuSearch className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
@@ -197,7 +197,7 @@ function DeviceListItem({ device, lang }: DeviceListItemProps) {
         className={`flex flex-col sm:flex-row justify-between w-full p-4 rounded-lg ${
           device.deprecated
             ? "bg-yellow-100 dark:bg-yellow-900"
-            : "bg-accent hover:bg-gray-200 dark:hover:bg-gray-900 transition-colors duration-500"
+            : "bg-white dark:bg-[#282828] hover:bg-[#f0f7ff] dark:hover:bg-[#1c1c1c] transition-colors duration-500"
         }`}
       >
         <div className="flex flex-col">

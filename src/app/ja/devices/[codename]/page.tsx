@@ -1,4 +1,4 @@
-import DevicePage from "../../../../components/device-page";
+import DevicePage from "@/components/codename";
 import type { Metadata } from "next";
 
 interface Props {

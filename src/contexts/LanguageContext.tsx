@@ -37,11 +37,19 @@ export const LanguageProvider: React.FC<{
     if (typeof window !== "undefined") {
       localStorage.setItem("preferredLanguage", lang);
       document.documentElement.lang = lang;
-      const currentPath = pathname || "/";
+
+      let currentPath = pathname || "/";
+      if (currentPath !== "/" && currentPath.endsWith("/")) {
+        currentPath = currentPath.slice(0, -1);
+      }
+
       const newPath =
         lang === "en"
-          ? currentPath.replace(/^\/ja/, "")
-          : `/ja${currentPath.replace(/^\/ja/, "")}`;
+          ? currentPath.replace(/^\/ja/, "") || "/"
+          : currentPath === "/"
+            ? "/ja"
+            : `/ja${currentPath.replace(/^\/ja/, "")}`;
+
       try {
         router.push(newPath);
       } catch (error) {

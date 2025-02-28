@@ -4,6 +4,7 @@ const nextConfig = {
     unoptimized: true,
   },
   reactStrictMode: true,
+  trailingSlash: false,
 };
 
-module.exports = nextConfig;
+export default nextConfig;

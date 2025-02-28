@@ -1,14 +1,14 @@
-import { Inter } from "next/font/google";
+import { Geist } from "next/font/google";
 import { ThemeProvider } from "./providers";
-import { SiteHeader } from "../components/site-header";
-import { SiteFooter } from "../components/site-footer";
+import { SiteHeader } from "@/components/header";
+import { SiteFooter } from "@/components/footer";
 import type { Metadata } from "next";
 import type React from "react";
 import { LanguageProvider } from "../contexts/LanguageContext";
 
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const geist = Geist({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: {
@@ -31,7 +31,7 @@ export default function RootLayout({
     <html lang={lang} suppressHydrationWarning>
       <link rel="icon" href="/favicon.ico" sizes="any" />
       <body
-        className={`${inter.className} min-h-screen bg-background antialiased`}
+        className={`${geist.className} min-h-screen bg-[#eff1f5] dark:bg-[#171717] antialiased`}
       >
         <LanguageProvider initialLang={lang}>
           <ThemeProvider
