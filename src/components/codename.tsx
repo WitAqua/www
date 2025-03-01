@@ -212,7 +212,15 @@ export default function DevicePage({ codename }: DevicePageProps) {
           </p>
         </div>
         <div className="flex flex-wrap gap-4">
-          <Dialog open={open} onOpenChange={setOpen}>
+          <Dialog
+            open={open}
+            onOpenChange={(isOpen) => {
+              setOpen(isOpen);
+              if (!isOpen) {
+                window.history.replaceState(null, "", window.location.pathname);
+              }
+            }}
+          >
             <DialogTrigger asChild>
               <Button
                 variant="ghost"
