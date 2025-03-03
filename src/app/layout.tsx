@@ -8,7 +8,10 @@ import { LanguageProvider } from "../contexts/LanguageContext";
 
 import "./globals.css";
 
-const geist = Geist({ subsets: ["latin"] });
+const geist = Geist({
+  variable: "--font-geist",
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   title: {
