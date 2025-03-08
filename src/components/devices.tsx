@@ -196,8 +196,8 @@ function DeviceListItem({ device, lang }: DeviceListItemProps) {
       <div
         className={`flex flex-col sm:flex-row justify-between w-full p-4 rounded-lg ${
           device.deprecated
-            ? "bg-yellow-100 dark:bg-yellow-900"
-            : "bg-white dark:bg-[#282828] hover:bg-[#f0f7ff] dark:hover:bg-[#1c1c1c] transition-colors duration-500"
+            ? "bg-yellow-100 dark:bg-yellow-900 hover:bg-yellow-200 dark:hover:bg-yellow-950 transition-colors duration-300"
+            : "bg-white dark:bg-[#282828] hover:bg-[#f0f7ff] dark:hover:bg-[#1c1c1c] transition-colors duration-300"
         }`}
       >
         <div className="flex flex-col">
