@@ -8,6 +8,7 @@ import { LanguageDropdown } from "@/components/lang-dropdown";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { FaDiscord } from "react-icons/fa6";
 
 export function SiteHeader() {
   const { language } = useLanguage();
@@ -81,6 +82,21 @@ export function SiteHeader() {
           </Link>
         </nav>
         <div className="flex items-center space-x-2 sm:space-x-3 ml-auto">
+          <Link
+            href="https://discord.gg/Br2zts2V2J"
+            className="transition-colors duration-300 hidden sm:block"
+            target="_blank"
+            rel="norefferer noopener"
+          >
+            <Button
+              className="hover:bg-[#d8dfe3] dark:hover:bg-[#545454]"
+              variant="ghost"
+              size="icon"
+            >
+              <FaDiscord className="w-5 h-5" />
+            </Button>
+          </Link>
+
           <LanguageDropdown />
           <ThemeToggle />
           <Link href={language === "en" ? "/devices" : "/ja/devices"}>
