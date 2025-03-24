@@ -59,12 +59,6 @@ export function SiteHeader() {
         </Link>
         <nav className="text-muted-foreground font-medium hidden lg:flex md:flex flex-1 pl-24 justify-center space-x-4">
           <Link
-            href={localizedHref("/about")}
-            className="hover:text-[#00d5bc] transition-colors duration-300"
-          >
-            About
-          </Link>
-          <Link
             href="https://wiki.witaqua.org"
             className="hover:text-[#00d5bc] transition-colors duration-300"
             target="_blank"
@@ -79,6 +73,12 @@ export function SiteHeader() {
             rel="norefferer noopener"
           >
             Discussions
+          </Link>
+          <Link
+            href={localizedHref("/about")}
+            className="hover:text-[#00d5bc] transition-colors duration-300"
+          >
+            About
           </Link>
         </nav>
         <div className="flex items-center space-x-2 sm:space-x-3 ml-auto">
