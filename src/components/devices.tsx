@@ -37,12 +37,13 @@ const translations = {
 
 interface DevicesPageProps {
   lang?: string;
+  initialDevices?: Device[];
 }
 
-export default function DevicesPage({ lang }: DevicesPageProps) {
-  const [devices, setDevices] = useState<Device[]>([]);
+export default function DevicesPage({ lang, initialDevices }: DevicesPageProps) {
+  const [devices, setDevices] = useState<Device[]>(initialDevices || []);
   const [searchQuery, setSearchQuery] = useState("");
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(!initialDevices);
   const [error, setError] = useState<string | null>(null);
   const { language } = useLanguage();
   const currentLang = lang || language;
@@ -51,18 +52,12 @@ export default function DevicesPage({ lang }: DevicesPageProps) {
   const [openSections, setOpenSections] = useState<string[]>([]);
 
   useEffect(() => {
+    if (initialDevices && initialDevices.length > 0) return;
     const fetchDevicesData = async () => {
       try {
-        const response = await fetch(
-          "https://raw.githubusercontent.com/WitAqua/WitAquaOTA/refs/heads/main/data/devices.json",
-        );
-        if (!response.ok) {
-          throw new Error(
-            `Failed to fetch devices data. Status: ${response.status}`,
-          );
-        }
-        const data = await response.json();
-        setDevices(data.devices);
+        const { fetchDevicesData } = await import("@/lib/devices");
+        const devicesData = await fetchDevicesData();
+        setDevices(devicesData);
       } catch (e) {
         console.error("Error loading devices:", e);
         setError("Failed to load data");
@@ -70,9 +65,8 @@ export default function DevicesPage({ lang }: DevicesPageProps) {
         setLoading(false);
       }
     };
-
     fetchDevicesData();
-  }, []);
+  }, [initialDevices]);
 
   useEffect(() => {
     if (searchQuery) {
@@ -180,11 +174,14 @@ function DeviceListItem({ device, lang }: DeviceListItemProps) {
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     e.preventDefault();
-    const path =
-      currentLang === "en"
-        ? `/devices/${device.codename}`
-        : `/ja/devices/${device.codename}`;
-    router.push(path);
+    // Only navigate if device has builds available
+    if (device.datetime > 0) {
+      const path =
+        currentLang === "en"
+          ? `/devices/${device.codename}`
+          : `/ja/devices/${device.codename}`;
+      router.push(path);
+    }
   };
 
   return (
@@ -197,6 +194,8 @@ function DeviceListItem({ device, lang }: DeviceListItemProps) {
         className={`flex flex-col sm:flex-row justify-between w-full p-4 rounded-lg ${
           device.deprecated
             ? "bg-yellow-100 dark:bg-yellow-900 hover:bg-yellow-200 dark:hover:bg-yellow-950 transition-colors duration-300"
+            : device.datetime === 0
+            ? "bg-gray-50 dark:bg-gray-800 cursor-not-allowed"
             : "bg-white dark:bg-[#282828] hover:bg-[#f0f7ff] dark:hover:bg-[#1c1c1c] transition-colors duration-300"
         }`}
       >
@@ -211,12 +210,18 @@ function DeviceListItem({ device, lang }: DeviceListItemProps) {
             {device.codename}
           </span>
           <span className="text-sm text-muted-foreground">
-            {t.androidVersion}{" "}
-            {device.latestAndroidVersion.toString().includes(".")
-              ? `${device.latestAndroidVersion.toString().split(".")[0]} (QPR${device.latestAndroidVersion.toString().split(".")[1]})`
-              : device.latestAndroidVersion}{" "}
-            | {t.latestBuild}{" "}
-            {new Date(device.datetime * 1000).toLocaleDateString()}
+            {device.datetime > 0 ? (
+              <>
+                {t.androidVersion}{" "}
+                {device.latestAndroidVersion.toString().includes(".")
+                  ? `${device.latestAndroidVersion.toString().split(".")[0]} (QPR${device.latestAndroidVersion.toString().split(".")[1]})`
+                  : device.latestAndroidVersion}{" "}
+                | {t.latestBuild}{" "}
+                {new Date(device.datetime * 1000).toLocaleDateString()}
+              </>
+            ) : (
+              "No builds available yet"
+            )}
           </span>
         </div>
       </div>
