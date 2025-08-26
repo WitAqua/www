@@ -5,6 +5,8 @@ interface Props {
   params: Promise<{ codename: string }>;
 }
 
+export const dynamic = "force-static";
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { codename } = await params;
   return {
@@ -14,16 +16,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export async function generateStaticParams() {
   try {
-    const response = await fetch(
-      "https://raw.githubusercontent.com/WitAqua/WitAquaOTA/refs/heads/main/data/devices.json",
-    );
-    const data = await response.json();
+    const { fetchDevicesData } = await import("@/lib/devices");
+    const devices = await fetchDevicesData();
 
-    if (!Array.isArray(data.devices)) {
-      throw new Error("JSON data is not an array");
-    }
-
-    return data.devices.map((device: { codename: string }) => ({
+    return devices.map((device: { codename: string }) => ({
       codename: device.codename,
     }));
   } catch (error) {
@@ -34,5 +30,8 @@ export async function generateStaticParams() {
 
 export default async function DeviceDetailPage({ params }: Props) {
   const { codename } = await params;
-  return <DevicePage codename={codename} />;
+  const { fetchDevicesData } = await import("@/lib/devices");
+  const devices = await fetchDevicesData();
+  const device = devices.find(d => d.codename === codename);
+  return <DevicePage codename={codename} initialDevice={device} />;
 }
