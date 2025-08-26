@@ -174,6 +174,13 @@ function DeviceListItem({ device, lang }: DeviceListItemProps) {
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     e.preventDefault();
+    
+    // Special handling for GSI device - link directly to GitHub releases
+    if (device.codename === "gsi") {
+      window.open("https://github.com/Doze-off/WitAqua_treble/releases", "_blank");
+      return;
+    }
+    
     // Only navigate if device has builds available
     if (device.datetime > 0) {
       const path =

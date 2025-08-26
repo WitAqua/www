@@ -39,9 +39,10 @@ interface LatestBuildSummary {
 
 export async function fetchDevicesData(): Promise<Device[]> {
   try {
-    const [oemsRes, buildsRes] = await Promise.all([
+    const [oemsRes, buildsRes, gsiOtaRes] = await Promise.all([
       fetch("https://api.witaqua.org/api/v2/oems"),
       fetch("https://download.witaqua.org/builds/builds.json"),
+      fetch("https://raw.githubusercontent.com/Doze-off/WitAqua_treble/16.0/ota.json"),
     ]);
 
     if (!oemsRes.ok) {
@@ -50,9 +51,13 @@ export async function fetchDevicesData(): Promise<Device[]> {
     if (!buildsRes.ok) {
       throw new Error(`Failed to fetch builds. Status: ${buildsRes.status}`);
     }
+    if (!gsiOtaRes.ok) {
+      throw new Error(`Failed to fetch GSI OTA. Status: ${gsiOtaRes.status}`);
+    }
 
     const oemsData: OemEntry[] = await oemsRes.json();
     const buildsData: BuildsData = await buildsRes.json();
+    const gsiOtaData = await gsiOtaRes.json();
 
     // Build a map from codename -> latest build info
     const latestByCodename = new Map<string, LatestBuildSummary>();
@@ -132,6 +137,27 @@ export async function fetchDevicesData(): Promise<Device[]> {
         }
       }
     }
+
+    // Add GSI (Generic System Image) device
+    const gsiDateTime = gsiOtaData.date;
+    
+    const gsiDevice: Device = {
+      name: "Generic System Image (GSI)",
+      codename: "gsi",
+      size: 0,
+      sha256: "",
+      brand: "GSI",
+      maintainer: { name: "" },
+      downloadUrl: "https://github.com/Doze-off/WitAqua_treble/releases",
+      deprecated: false,
+      latestAndroidVersion: 16.0,
+      archiveUrl: "",
+      imgsUrl: "",
+      installUrl: "",
+      filename: ``,
+      datetime: gsiDateTime,
+    };
+    composedDevices.push(gsiDevice);
 
     // sort by Android version (newest first), then by brand and name
     composedDevices.sort((a, b) => {
