@@ -2,7 +2,7 @@ export interface Device {
   name: string;
   codename: string;
   size: number;
-  sha256: string;
+  md5: number;
   brand: string;
   maintainer: {
     name: string;
