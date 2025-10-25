@@ -91,7 +91,10 @@ export function SiteHeader() {
 
           <LanguageDropdown />
           <ThemeToggle />
-          <Link href={language === "en" ? "/devices" : "/ja/devices"}>
+          <Link
+            href="https://download.witaqua.org/"
+            target="_blank"
+          >
             <Button
               size="default"
               className="bg-[#00c8ff] transition-colors duration-500 hover:bg-[#00aeff] font-medium"
