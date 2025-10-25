@@ -67,14 +67,6 @@ export function SiteHeader() {
             Wiki
           </Link>
           <Link
-            href="https://github.com/orgs/WitAqua/discussions"
-            className="hover:text-[#00d5bc] transition-colors duration-300"
-            target="_blank"
-            rel="norefferer noopener"
-          >
-            Discussions
-          </Link>
-          <Link
             href={localizedHref("/about")}
             className="hover:text-[#00d5bc] transition-colors duration-300"
           >

@@ -91,16 +91,6 @@ export function SiteFooter() {
                   Wiki
                 </Link>
               </li>
-              <li>
-                <Link
-                  href="https://github.com/orgs/WitAqua/discussions"
-                  className="text-muted-foreground hover:text-[#00d5bc] transition-colors duration-300"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {language === "en" ? "Discussions" : "ディスカッション"}
-                </Link>
-              </li>
             </ul>
           </div>
           <div>
