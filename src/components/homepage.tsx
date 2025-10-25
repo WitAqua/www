@@ -115,7 +115,7 @@ export default function HomePage() {
                 >
                   {language === "en"
                     ? "WitAqua is a custom Android ROM developed by Japanese Android enthusiasts. The primary goal of this ROM is to deliver a stock Android experience, free from unnecessary bloatware. It offers a clean, responsive system with a streamlined interface. While the ROM maintains the core features and simplicity of stock Android, it also includes several useful, carefully selected enhancements and additional features that improve usability and customization."
-                    : "WitAquaは、日本のAndroid愛好家によって開発されたカスタムAndroid ROMです。このROMの主な目的は、不要なブロートウェアのないストックAndroidエクスペリエンスを提供することです。クリーンでレスポンシブなシステムと合理化されたインターフェースを提供します。このROMはストックAndroidの主要機能とシンプルさを維持しながら、使いやすさとカスタマイズ性を向上させる、慎重に選択された有用な拡張機能と追加機能も含んでいます。"}
+                    : "WitAquaは、日本のAndroid愛好家によって開発されたAndroid カスタムROMです。このROMの主な目的は、不要なブロートウェアのないストックAndroidエクスペリエンスを提供することです。クリーンでレスポンシブなシステムと合理化されたインターフェースを提供します。このROMはストックAndroidの主要機能とシンプルさを維持しながら、使いやすさとカスタマイズ性を向上させる、慎重に選択された有用な拡張機能と追加機能も含んでいます。"}
                 </motion.p>
               </div>
               <div className="flex flex-col gap-2 min-[400px]:flex-row justify-center md:justify-start">
@@ -181,12 +181,12 @@ export default function HomePage() {
                 <p className="text-muted-foreground mb-4">
                   {language === "en"
                     ? "Interested in contributing? We welcome contributions from developers and enthusiasts around the globe. Whether it's fixing bugs, adding features, or improving documentation, your help is invaluable."
-                    : "貢献に興味がありますか？私たちは世界中の開発者や愛好家からの貢献を歓迎します。バグの修正、機能の追加、ドキュメントの改善など、あなたの助けは非常に貴重です。"}
+                    : "コントリビュートに興味がありますか？私たちは世界中の開発者や愛好家からの貢献を歓迎します。バグの修正、機能の追加、ドキュメントの改善など、あなたの助けは非常に貴重です。"}
                 </p>
                 <p className="text-muted-foreground mb-4">
                   {language === "en"
                     ? "To get started, visit our GitHub repository."
-                    : "始めるには、私たちのGitHubリポジトリを訪れてください。"}
+                    : "始めるには、私たちのGitHubリポジトリにアクセス。"}
                 </p>
                 <Link
                   href="https://github.com/WitAqua"

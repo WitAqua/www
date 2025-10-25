@@ -11,11 +11,11 @@ const leftFeatures = [
   {
     title: {
       en: "Pure Android, Enhanced",
-      ja: "ピュアAndroid、強化版",
+      ja: "ピュアで強化されたAndroid",
     },
     description: {
       en: "Stock Android at its core, with useful improvements that keep things simple.",
-      ja: "純粋なAndroidの核で、便利な改善が加えられています。",
+      ja: "純粋なAndroidをメインに、便利な改善が加えられています。",
     },
   },
   {

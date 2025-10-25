@@ -60,7 +60,7 @@ export function SiteFooter() {
         <div className="flex flex-col items-center gap-10 lg:gap-40 md:flex-row md:gap-32">
           <div className="md:self-start">
             <h3 className="text-lg font-semibold mb-2 text-center md:text-left">
-              {language === "en" ? "Resources" : "リソース"}
+              Resources
             </h3>
             <ul className="flex flex-col items-center gap-2 md:items-start">
               <li>
@@ -68,7 +68,7 @@ export function SiteFooter() {
                   href={localizedHref("/about")}
                   className="text-muted-foreground hover:text-[#00d5bc] transition-colors duration-300"
                 >
-                  {language === "en" ? "About" : "アバウト"}
+                  About
                 </Link>
               </li>
               <li>
@@ -131,7 +131,7 @@ export function SiteFooter() {
                 >
                   {language === "en"
                     ? "Code of Conduct"
-                    : "コード・オブ・コンダクツ"}
+                    : "行動規範"}
                 </Link>
               </li>
               <li>
@@ -141,7 +141,7 @@ export function SiteFooter() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  {language === "en" ? "Building Guides" : "ビルディングガイド"}
+                  {language === "en" ? "Building Guides" : "ビルドガイド"}
                 </Link>
               </li>
             </ul>
@@ -151,7 +151,7 @@ export function SiteFooter() {
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="py-6 text-center text-sm text-muted-foreground">
-          © {new Date().getFullYear()} WitAqua.
+          © 2024 - {new Date().getFullYear()} WitAqua.
         </div>
       </div>
     </footer>
