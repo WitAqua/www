@@ -11,6 +11,8 @@ const teamMembers = [
     image: "/toufu.png",
     github: "toufune",
     twitter: "toufu14271",
+    telegram: "toufune",
+    www: "toufu.dev",
   },
   {
     name: "Maitani-Sakura",
@@ -23,7 +25,7 @@ const teamMembers = [
   },
   {
     name: "soralis0912",
-    role: "Developer",
+    role: "Developer/Server Manager",
     image: "/soralis0912.png",
     github: "soralis0912",
     twitter: "soralis_0912",
