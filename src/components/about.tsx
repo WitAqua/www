@@ -74,6 +74,14 @@ const teamMembers = [
     github: "RuronKun3141",
     twitter: "RuronKun_PC",
   },
+  {
+    name: "Misaka",
+    role: "Developer",
+    image: "/misaka.png",
+    github: "misakazip",
+    twitter: "misakazip",
+    telegram: "misakazip",
+  },
 ];
 
 const fadeInUp = {
