@@ -119,7 +119,10 @@ export default function HomePage() {
                 </motion.p>
               </div>
               <div className="flex flex-col gap-2 min-[400px]:flex-row justify-center md:justify-start">
-                <Link href={localizedHref("/devices")}>
+                <Link
+                  href="https://download.witaqua.org/"
+                  target="_blank"
+                  rel="noreferrer noopener">
                   <Button className="inline-flex h-10 items-center justify-center bg-[#00c8ff] transition-colors duration-300 hover:bg-[#00aeff] font-medium">
                     {language === "en" ? "Get WitAqua" : "WitAquaを入手する"}
                     <FaDownload className="ml-2 h-4 w-4" />
