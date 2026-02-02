@@ -21,14 +21,14 @@ export const metadata: Metadata = {
   description: "A custom Android ROM based on LineageOS.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
   params,
 }: {
   children: React.ReactNode;
-  params: { lang: string };
+  params: Promise<{ lang?: string }>;
 }) {
-  const lang = params.lang === "ja" ? "ja" : "en";
+  const lang = (await params).lang === "ja" ? "ja" : "en";
 
   return (
     <html lang={lang} suppressHydrationWarning>
