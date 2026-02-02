@@ -72,12 +72,6 @@ const features = [
 
 export default function HomePage() {
   const { language } = useLanguage();
-  const localizedHref = (path: string) => {
-    if (path === "/") {
-      return language === "en" ? "/" : "/ja";
-    }
-    return language === "en" ? path : `/ja${path}`;
-  };
   return (
     <div className="flex min-h-screen flex-col">
       <main className="flex-1 flex flex-col items-center justify-center ">
